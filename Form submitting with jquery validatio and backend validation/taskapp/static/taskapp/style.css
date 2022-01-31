@@ -1,0 +1,14 @@
+form {
+    margin: auto;
+    width: 1024px;
+    background-color: rgb(238, 223, 221);
+    color: rgb(26, 22, 22);
+    border: 2px solid black;
+    padding: 20px;
+    font-size: 14px;
+    font-family: Verdana;
+}
+
+h1 {
+    color: rgb(214, 147, 147);
+}

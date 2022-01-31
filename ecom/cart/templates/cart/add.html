@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{%extends 'cart/base.html'%}
+
+        {%block body%}
+        
+        {%if searched%}
+        <h1>Your search results.........{{searched}}</h1>
+        <br>
+        {%for venue in venues%}
+        <a href="">{{venue}}{{venue.image.url}}</a><br/>
+        {% endfor %}
+        {%else%}
+        <h1>Search something..</h1>
+        {%endif%}
+
+     {%endblock%}
+ 

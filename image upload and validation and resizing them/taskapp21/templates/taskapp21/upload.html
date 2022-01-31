@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+	<head>
+        {% load thumbnail %}
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<title>Resize</title>
+	</head>
+	<body>
+        <div class="container">
+            <h2 class="my-4">Uploaded image</h2>
+            <form action="upload" id="myform" class="form-group" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                  <input type="file" name="upload" multiple id="upload" accept="image/*" required>
+                  <br>
+                  <button class="btn btn-dark my-4" type="submit">Submit</button><br><br>
+                  <img id="preview" src="" alt="your image"/> 
+            </form>
+            
+          </div>
+          <script>
+            var file = document.getElementById('upload'); 
+            var preview = document.getElementById('preview'); 
+            file.addEventListener('change', function() {   
+              preview.src = URL.createObjectURL(this.files[0]); 
+            }, false);
+          </script>
+
+  <script>
+            $(document).ready(function() {
+                $("#myform").validate({
+                rules: {
+                upload: {
+                required: true,
+                //accept: "jpg|jpeg|png|ico|bmp",
+                }
+            },
+            messages: {
+                upload: {
+                required: "Please upload images",
+                //accept:"Please upload correct format(jpg/jpeg/png/ico/bmp)",
+               },  
+        }
+    }),
+}),
+</script>
+    </body>
+    
+      
+</html>

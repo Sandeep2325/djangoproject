@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{%extends 'cart/base.html' %}
+
+    {%load static %}
+	
+        {%block body%}
+        
+     <div class="d-flex">
+        {% for product in productss %}
+                <div class="card m-3" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.productname }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="card-footer">
+                            <p class="card-text">Price - {{ product.price }}</p>
+                            <form action="add-to-cart">
+                                <input type="hidden" name="prod_id" value="{{product.id}}" id="product_id">
+                                <input type="hidden" name="prod_name" value="{{product.productname}}" id="product_name">
+                                <input type="hidden" name="prod_price" value="{{product.price}}" id="product_price">
+                                <input type="hidden" name="prod_image" value="{{product.image}}" id="product_image">
+                                <button type="submit" class="btn btn-outline-primary add-btn update-cart">Add to cart</button>
+                            <!--<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>-->
+                           <!-- <a href="/cart" class="btn btn-primary">ADD TO CART</a>-->
+                            </form>
+                        
+                        </div>
+                    </div>
+                </div>
+           
+        {% endfor %}
+    </div>
+    {%endblock%}
+ 

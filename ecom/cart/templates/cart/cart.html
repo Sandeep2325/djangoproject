@@ -1,0 +1,46 @@
+
+{%extends 'cart/base.html' %}
+{%block body%}
+{%load static %}
+<div class="d-flex">
+  {% for product in cart_products %}
+          <div class="card m-3" style="width: 18rem;">
+              <img class="card-img-top" src="{{ product.product.image.url }}" alt="Card image cap">
+              <div class="card-body">
+                  <h5 class="card-title">{{ product.product.productname }}</h5>
+                  
+                  <div class="card-footer">
+                      <p class="card-text">Price - {{ product.product.price }}</p>
+                      <div class="quantity">
+                        <a href="" class="dec-btn p-0 ml-2"><i class="fas fa-minus"></i></a>
+                        {% comment %} <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button> {% endcomment %}
+                        Quantity:<input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="{{product.quantity}}"/>
+                        {% comment %} <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button> {% endcomment %}
+                        <a href="" class="inc-btn p-0"><i class="fas fa-plus"></i></a>
+                      </div>
+                     
+
+              <!--<ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">Rs{{amount}}</span></li>
+                <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Shipping Charge</strong><span class="text-muted small">+ Rs{{shipping_amount}}</span></li>
+                <li class="border-bottom my-2"></li>
+                <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>Rs{{total_amount}}</span></li>
+              </ul>-->
+                      <form action="">
+                          
+                          <button type="submit" class="btn btn-outline-primary add-btn update-cart">checkout</button>
+                      
+                      </form>
+                      <form action="">
+                        <input type="hidden" name="prod_id" value="{{cart.id}}" id="product_id">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                        
+                    
+                    </form>
+                  </div>
+              </div>
+          </div>
+     
+  {% endfor %}
+</div>
+{%endblock%}

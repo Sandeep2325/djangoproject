@@ -1,0 +1,30 @@
+{%extends 'cart/base.html' %}
+{%block body%}
+<div class="container py-5">
+<form method="post" name="contact"  class="form-group">
+    {%csrf_token%}
+<div>
+    <label for="name" class="form-control">Name</label>
+    <input type="text" id="name" name="name" class="form-control"><br><br>
+</div>
+<div>
+    <label for="email" class="form-control">Email</label>
+    <input type="Email" id="email" name="email" class="form-control"><br><br>,
+</div>
+<div>
+    <label for="mobile" class="form-control">Mobile</label>
+    <input type="number" id="mobile" name="mobile" class="form-control"><br><br>
+</div>
+<div>
+    <label for="message" class="form-control">Message</label>
+    <textarea id="message" name="message" class="form-control">
+        </textarea>
+</div>
+<!--<div>
+    <label for="Resume" class="form-control">Resume</label>
+    <input type="file" id="resume" name="resume" class="form-control"><br><br>
+</div>-->
+    <button type="submit" class="btn btn-success">Submit</button>
+</from>
+</div>
+{%endblock%}

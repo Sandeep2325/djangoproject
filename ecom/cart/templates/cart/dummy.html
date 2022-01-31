@@ -1,0 +1,21 @@
+<!--{%extends 'cart/base.html' %}
+{%block body%}
+{%load static %}
+<h1> Add your items here</h1>
+<div class="d-flex">
+  {% for product in cart_products %}
+  <div class="card m-3" style="width: 18rem;">
+              <div class="card-body">
+                <div class="card-body">
+                  {% if product.product.image %}
+                  <a class="reset-anchor d-block animsition-link" href=""><img src="{{ product.product.image.url }}" alt="{{product.product.productname}}"/></a>
+                {% endif %}
+                  </div>
+                  <h5 class="card-title">{{ product.product_id }}</h5>
+                  <h5 class="card-title">{{ product.product_name }}</h5>
+          </div>
+          
+        </div>
+  {% endfor %}
+</div>
+{%endblock%}-->

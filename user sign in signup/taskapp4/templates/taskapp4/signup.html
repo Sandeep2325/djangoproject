@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load crispy_forms_tags%}
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<title>Signup</title>
+	</head>
+	<body>
+        <div class="container py-5">
+            <h1>Signup</h1>
+            <form id="myform" method="POST" action="signin">
+                {% csrf_token %}
+                {{ register_form.username.label }}*<br>
+                {{ register_form.username }} <br><br>
+
+                {{ register_form.first_name.label }}*<br>
+                {{ register_form.first_name }} <br><br>
+
+                {{ register_form.last_name.label }}*<br>
+                {{ register_form.last_name }} <br><br>
+
+                {{ register_form.email.label }}*<br>
+                {{ register_form.email }} <br><br>
+                
+                {{ register_form.password1.label }}*<br>
+                {{ register_form.password1 }} <br><br>
+                
+                {{ register_form.password2.label }}*<br>
+                {{ register_form.password2 }}<br><br>
+                <label>Show password:
+                    <input type="checkbox" class="form-control" onclick="myFunction();myFunction1()"/></label><br><br><br>
+                            
+            </label>
+
+                <button class="btn btn-primary" type="submit">Signup</button>
+            </form>
+            <p class="text-center">If you already have an account, <a href="/signin">Signin</a> instead.</p>
+        </div>
+        {{register_form.errors}}
+        
+        <script>
+            
+    
+            function myFunction1(){
+                var x=document.getElementById("id_password1");
+                if(x.type=="password"){
+                    x.type="text";
+                }else{
+                x.type="password";
+                }
+            }
+            function myFunction(){
+                var x=document.getElementById("id_password2");
+                if(x.type=="password"){
+                    x.type="text";
+                }else{
+                x.type="password";
+                }
+            }
+        </script>
+        <script>
+            $(document).ready(function() {
+                $("#myform").validate({
+                rules: {
+                id_first_name : {
+                required: true,
+                minlength: 3
+                },
+                id_last_name: {
+                required: true,                   
+                },
+                
+                id_email:{required:true,
+                },
+               
+                id_password1:{
+                    required:true,
+                    minlength:6,
+                },
+                id__password2:{
+                    equalTo:"#id_password1",
+                }
+            }, 
+                messages: {
+                    id_first_name: {
+                    required: "Please enter first name",
+                   },      
+                    id_last_name: {
+                    required: "Please enter last name",
+                   },     
+                    id_email:{
+                        required:"Please enter email"
+                    },
+                    id_password1:{
+                        required:"Enter password",
+                        minlength:"Enter atleast 6 characters"
+                    },
+                    id_password2:{
+                        equalTo:"Password didn't match"
+                    }
+
+                },
+                 
+        
+                  
+                
+            });
+        });
+        </script>
+       
+
+    </body>
+    
+</html>

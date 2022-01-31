@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dynamic field inputs</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <form id="myform" method="post" class="form-group" action="upload">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="inputFormRow">
+                        <div class="form-control">
+                          <input type="text" id="fullname[]" name="fullname[]" class="form-control" placeholder="Enter name">
+                            <input type="text" id="hobbies[]" name="hobbies[]" class="form-control" placeholder="hobbies">
+                            <div class="input-group-append">                
+                               <button id="removeRow" type="button">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="newRow"></div>
+                    <button id="addRow" type="button">Add Row</button><br><br>
+                    
+                </div>
+            </div>
+            <button  id="submit" type="submit">submit</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        // add row
+        $("#addRow").click(function () {
+            var html = '';
+            html += '<div id="inputFormRow">';
+            html += '<div class="input-group mb-3">';
+            html += '<input type="text" id="fullname[]" name="fullname[]" class="form-control" placeholder="Enter name">';
+            html += '<div class="input-group mb-3">';
+            html += '<input type="text" id="hobbies[]" name="hobbies[]" class="form-control" placeholder="hobbies">';
+            html += '<div class="input-group-append">';
+            html += '<button id="removeRow" type="button">Remove</button>';
+            html += '</div>';
+            html += '</div>';
+
+            $('#newRow').append(html);
+        });
+       
+
+        // remove row
+        $(document).on('click', '#removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#myform").validate({
+            rules: {
+            fullname: {
+            required: true,
+            minlength: 1
+            },
+            hobbies: {
+            required: true,                   
+            },
+        }, 
+            messages: {
+                fullname: {
+                required: "Please enter name",
+               },      
+                hobbies: {
+                required: "Please enter atleast one hobby",
+               },     
+                
+            },
+       
+        });
+    });
+    </script>
+
+    
+</body>
+</html>
